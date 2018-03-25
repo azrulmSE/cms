@@ -1,0 +1,33 @@
+<template>
+   <div >
+       <sidebar></sidebar>
+    </div>
+</template>
+
+<script>
+import sidebar from '~/components/sidebar'
+
+export default {
+    components:{
+        sidebar:sidebar
+    },
+    data: () => ({
+        
+    }),
+    mounted () {
+        this.isLoading()
+    },
+    methods:{
+        isLoading(){
+            this.$nextTick(() => {
+            this.$nuxt.$loading.start()
+            setTimeout(() => this.$nuxt.$loading.finish(),2000)
+            })
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>

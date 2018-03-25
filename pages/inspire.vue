@@ -1,5 +1,6 @@
 <template>
   <v-layout>
+    <sidebar></sidebar>
     <v-flex text-xs-center>
       <img src="/v.png" alt="Vuetify.js" class="mb-5">
       <blockquote class="blockquote">
@@ -13,3 +14,23 @@
     </v-flex>
   </v-layout>
 </template>
+<script>
+import sidebar from '~/components/sidebar'
+
+export default {
+  components:{
+    sidebar:sidebar
+  },
+  mounted () {
+    this.isLoading()
+  },
+  methods:{
+    isLoading(){
+        this.$nextTick(() => {
+        this.$nuxt.$loading.start()
+        setTimeout(() => this.$nuxt.$loading.finish(),2000)
+        })
+    }
+  }
+}
+</script>

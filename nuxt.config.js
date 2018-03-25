@@ -9,7 +9,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: "CMS Celex",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -24,7 +24,14 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#3B8070' },
+  loading: '~/components/loading/loading1.vue',
+  // loading: { color: '#ff5722', duration:5000},
+  // loadingIndicator: {
+  //   name: 'rectangle-bounce',
+  //   color: '#ff5722',
+  //   background: 'white'
+  // },
+  // loading: false,
 
   /*
   ** Global CSS
@@ -45,7 +52,8 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/font-awesome'
   ],
 
   /*
@@ -53,6 +61,7 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    baseUrl: process.env.BASE_URL || 'http://localhost:5000'
   },
 
   /*
@@ -71,6 +80,18 @@ module.exports = {
           })
         ]
       }
+    }
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:5000'
+  },
+  router: {
+    extendRoutes (routes, resolve) {
+      routes.push({
+        name: 'Main',
+        path: '*',
+        component: resolve(__dirname, 'pages/index.vue')
+      })
     }
   }
 }
