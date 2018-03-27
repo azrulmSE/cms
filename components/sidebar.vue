@@ -57,30 +57,25 @@ export default {
         { icon: "exit_to_app", title: "Logout", to: "/" },
       ],
       miniVariant: true,
-      title: this.$store.state.loadPage
+      title: this.$store.getters.loadPage
     }
   },
   methods:{
     sidebar(drawer,miniVariant,temporary){
       this.drawer = drawer
       this.miniVariant = miniVariant
-      // this.temporary = temporary
     },
     updateURL(toUrl){
       this.$store.dispatch('loadPage',toUrl)
     }
   },
   computed:{
-    currentUrl:()=>{
-      // console.log('test:',this.$route.params.id)
-      return 2
-    },
     loadPage:()=>{
-      // return this.$store.getters.loadPage;
-      return this.$store.state.loadPage;
+      return this.$store.getters.loadPage;
     }
   },
   created(){
+    this.$store.commit('updatePage')
     if(this.$store.state.loadPage=='') this.$router.push('/')
   }
 };
