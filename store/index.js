@@ -1,5 +1,4 @@
 import Vuex from 'vuex'
-// import Cookies from 'js-cookie';
 import ls from 'local-storage'
 
 const createStore = () => {

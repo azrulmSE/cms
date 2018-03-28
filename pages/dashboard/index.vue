@@ -1,6 +1,7 @@
 <template>
    <div >
        <sidebar></sidebar>
+       <h1>TEST</h1>
     </div>
 </template>
 

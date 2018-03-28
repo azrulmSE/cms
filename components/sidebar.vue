@@ -29,22 +29,22 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed app dark :clipped-left="clipped" class="primary" style="padding-left:12px;">
-      <v-toolbar-side-icon @click="sidebar(!drawer,!miniVariant,!temporary)" ></v-toolbar-side-icon>
-      <v-toolbar-title >{{title}}</v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
+    <toolbar v-on:sidebar="sidebar" ></toolbar>
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
-    
     </div>
 </template>
 
 <script>
+import toolbar from '~/components/toolbar'
+
 export default {
+  components:{
+        "toolbar":toolbar
+    },
   data() {
     return {
       clipped: true,
@@ -57,11 +57,10 @@ export default {
         { icon: "exit_to_app", title: "Logout", to: "/" },
       ],
       miniVariant: true,
-      title: this.$store.getters.loadPage
     }
   },
   methods:{
-    sidebar(drawer,miniVariant,temporary){
+    sidebar(drawer,miniVariant){
       this.drawer = drawer
       this.miniVariant = miniVariant
     },
@@ -76,8 +75,8 @@ export default {
   },
   created(){
     this.$store.commit('updatePage')
-    if(this.$store.state.loadPage=='') this.$router.push('/')
+    if(this.$store.getters.loadPage=='') this.$router.push('/')
   }
-};
+}
 </script>
 
